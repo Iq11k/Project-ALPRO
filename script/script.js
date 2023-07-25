@@ -128,7 +128,7 @@ function updateData() {
   const selectedIndex = updateBook;
   data[selectedIndex] = updatedData;
 
-  generateTable();
+  window.location.reload();
   saveData();
 }
 
@@ -156,7 +156,7 @@ const getData = () => {
 
 function deleteData(index) {
   data.splice(index, 1);
-  generateTable();
+  window.location.reload();
   saveData();
 }
 
@@ -240,6 +240,11 @@ function generateTableSearched() {
         cell.appendChild(cellText);
         row.appendChild(cell);
       }
+      const editButton = document.createElement("td");
+      const editText = document.createTextNode("Edit");
+      editButton.appendChild(editText);
+      editButton.addEventListener("click", () => editData(i));
+      row.appendChild(editButton);
 
       const deleteButton = document.createElement("td");
       const deleteText = document.createTextNode("Delete");
@@ -256,3 +261,4 @@ function generateTableSearched() {
 
 getData();
 generateTable();
+console.log(data);
